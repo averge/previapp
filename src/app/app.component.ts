@@ -45,7 +45,7 @@ export class AppComponent {
     if (this.preguntas[randomPregunta].tipo==2){
       this.pregunta=this.preguntas[randomPregunta].pregunta
     }
-    else{
+    if (this.preguntas[randomPregunta].tipo==3){
       this.pregunta= nombre1 + " " + this.preguntas[randomPregunta].pregunta
     }
   }
