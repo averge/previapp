@@ -8,14 +8,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent {
   title = 'previapp';
-
+  tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}]
   participantes:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"}];
-  preguntas:any=[{pregunta:"se la chupa a"}, {pregunta:"se coge a la mama de"}];
+  preguntas:any=[{pregunta:"se la chupa a", tipo:1}, {pregunta:"se coge a la mama de", tipo:1},{pregunta:"Quien la tiene mas grande?", tipo:2}];
   nuevaPersona = new FormGroup(
     {nombre : new FormControl('', [Validators.required])}
   )
   nuevaPregunta= new FormGroup(
-    {pregunta : new FormControl('', [Validators.required])}
+    {pregunta : new FormControl('', [Validators.required]),
+    tipo : new FormControl('', [Validators.required])}
   )
   pregunta=''
 
@@ -38,7 +39,10 @@ export class AppComponent {
       randomParticipante2 = Math.floor(Math.random() * this.participantes.length);
     }
     let randomPregunta = Math.floor(Math.random() * this.preguntas.length);
-    this.pregunta=nombre1 + " " + this.preguntas[randomPregunta].pregunta + " " + this.participantes[randomParticipante2].nombre
-
+    if (this.preguntas[randomPregunta].tipo==1){
+      this.pregunta=nombre1 + " " + this.preguntas[randomPregunta].pregunta + " " + this.participantes[randomParticipante2].nombre
+    }else{
+      this.pregunta= this.preguntas[randomPregunta].pregunta
+    }
   }
 }
