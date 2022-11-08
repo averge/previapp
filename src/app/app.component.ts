@@ -29,6 +29,8 @@ export class AppComponent {
 
   addPregunta(){
     this.preguntas.push(this.nuevaPregunta.value);
+    console.log(this.preguntas)
+    console.log(this.nuevaPregunta.value)
     this.nuevaPregunta.reset();
   }
   random(){

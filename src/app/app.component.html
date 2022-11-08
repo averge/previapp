@@ -33,7 +33,7 @@
       tipo
     </mat-label>
       <mat-select placeholder="Tipo de pregunta" formControlName="tipo">
-        <mat-option *ngFor="let tipo of tiposDePregunta" [value]="tipo">
+        <mat-option *ngFor="let tipo of tiposDePregunta" [value]="tipo.id">
           {{tipo.descripcion}}
         </mat-option>
       </mat-select>
