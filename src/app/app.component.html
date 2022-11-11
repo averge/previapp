@@ -1,5 +1,9 @@
+<div class="test">
 
-<form [formGroup]="nuevaPersona" >
+</div>
+
+<div *ngIf="!jugando">
+<form [formGroup]="nuevaPersona" align="center">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nombre</mat-label>
     <input matInput placeholder="Enter your name" name="usename" formControlName="nombre">
@@ -9,6 +13,14 @@
       </span>
     </mat-error>
   </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>personaje</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let personaje of profiles" [value]="personaje">
+        {{personaje}}
+      </mat-option>
+    </mat-select>
+    </mat-form-field>
   
   <button mat-raised-button color="primary" [disabled]="!nuevaPersona.valid" (click)="addPersona()">
     Agregar persona
@@ -17,7 +29,7 @@
 </form>
 
 
-<form [formGroup]="nuevaPregunta" >
+<form [formGroup]="nuevaPregunta" align="center">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Pregunta</mat-label>
     <input matInput placeholder="Pregunta?" name="pregunta" formControlName="pregunta">
@@ -45,21 +57,98 @@
   </button>
 
 </form>
-<Label>
-  Participantes
-</Label>
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Eliminar</th>
-  </tr>
-  <tr *ngFor="let persona of participantes">
-    <td>{{persona.nombre}}</td>
-    <td><button mat-raised-button color="warn" (click)="participantes.splice(persona,1);">Eliminar</button></td>
+
+<h1 style="text-align: center;">
+  PARTICIPANTES
+</h1>
+
+<table align="center">
+
+  <tr >
+    <td *ngFor="let persona of participantes" >{{persona.nombre}} {{persona.emoji}}
+      <tr > 
+    <td><button mat-raised-button color="secundary" (click)="participantes.splice(persona,1);">❌</button></td>
+      </tr>
+    </td>
   </tr>
 </table>
-<button mat-raised-button color="primary" [disabled]="preguntas.lenght<1 && participantes.lenght<2" (click)="random()">
-  Proxima pregunta
+</div>
+<div class="wrap" *ngIf="!jugando">
+  <button (click)="random()" class="button_start">Jugar</button>
+</div>
+
+
+
+
+<div *ngIf="jugando">
+  
+    <!--<div><h1 *ngIf="pregunta!=''" style="font-family: sans-serif; text-align: center;">{{pregunta}}</h1></div>-->
+
+
+
+
+
+
+<!--
+<div class="demo">
+  <div class="demo__colored-blocks">
+    <div class="demo__colored-blocks-rotater">
+      <div class="demo__colored-block"></div>
+      <div class="demo__colored-block"></div>
+      <div class="demo__colored-block"></div>
+    </div>
+    <div class="demo__colored-blocks-inner"></div>
+    <div class="demo__text">{{pregunta}}</div>
+  </div>
+  
+</div>
+-->
+
+
+<div class="demo1" >
+  <div class="demo1__colored-blocks">
+    <div class="demo1__colored-blocks-rotater">
+      <div class="demo1__colored-block"></div>
+      <div class="demo1__colored-block"></div>
+      <div class="demo1__colored-block"></div>
+    </div>
+    <div class="demo1__colored-blocks-inner"></div>
+    <div class="demo__text">{{pregunta}}</div>
+  </div>
+  <div class="demo1__inner">
+    <svg class="demo1__numbers" viewBox="0 0 100 100">
+      <defs>
+        <path class="demo1__num-path-1" d="M40,28 55,22 55,78"/>
+        <path class="demo1__num-join-1-2" d="M55,78 55,83 a17,17 0 1,0 34,0 a20,10 0 0,0 -20,-10"/>
+        <path class="demo1__num-path-2" d="M69,73 l-35,0 l30,-30 a16,16 0 0,0 -22.6,-22.6 l-7,7"/>
+        <path class="demo1__num-join-2-3" d="M28,69 Q25,44 34.4,27.4"/>
+        <path class="demo1__num-path-3" d="M30,20 60,20 40,50 a18,15 0 1,1 -12,19"/>
+      </defs>
+      <path class="demo1__numbers-path" 
+            d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 
+               Q25,44 34.4,27.4
+               l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 
+               a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
+               l0,-61 L40,28" />
+    </svg>
+  </div>
+  
+</div>
+
+
+
+
+
+  
+<button (click)="jugando=false" class="back">
+  Parar
+</button>
+<button (click)="random()" class="next">
+  Siguiente
+  
 </button>
 
-<h1 *ngIf="pregunta!=''">{{pregunta}}</h1>
+
+    
+</div>​
+
