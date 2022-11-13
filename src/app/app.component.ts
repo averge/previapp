@@ -16,8 +16,7 @@ export class AppComponent {
   preguntas:any=[{pregunta:"se la chupa a", tipo:1}, {pregunta:"se coge a la mama de", tipo:1},{pregunta:"Quien la tiene mas grande?", tipo:2},{pregunta:"Quien se la chupo a quien?", tipo:2}, {pregunta:"Toma 5 tragos", tipo:3},{pregunta:"Hace un baile sensual", tipo:3}, {pregunta:"le da un beso a", tipo:1}, {pregunta:"Chupala me canse de pesnar preguntas!!", tipo:3}];
   nuevaPersona = new FormGroup(
     {nombre : new FormControl('', [Validators.required]),
-  emoji: new FormControl ('', [Validators.required])}
-  )
+    })
   nuevaPregunta= new FormGroup(
     {pregunta : new FormControl('', [Validators.required]),
     tipo : new FormControl('', [Validators.required])}

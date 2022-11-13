@@ -13,14 +13,7 @@
       </span>
     </mat-error>
   </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>personaje</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let personaje of profiles" [value]="personaje">
-        {{personaje}}
-      </mat-option>
-    </mat-select>
-    </mat-form-field>
+ 
   
   <button mat-raised-button color="primary" [disabled]="!nuevaPersona.valid" (click)="addPersona()">
     Agregar persona
@@ -65,7 +58,7 @@
 <table align="center">
 
   <tr >
-    <td *ngFor="let persona of participantes" >{{persona.nombre}} {{persona.emoji}}
+    <td *ngFor="let persona of participantes" align="center">{{persona.nombre}}
       <tr > 
     <td><button mat-raised-button color="secundary" (click)="participantes.splice(persona,1);">❌</button></td>
       </tr>
