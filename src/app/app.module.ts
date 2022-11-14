@@ -16,11 +16,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ParticipanteComponent } from './new/participante/participante.component';
+import { PreguntaComponent } from './new/pregunta/pregunta.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ParticipanteComponent,
+    PreguntaComponent
   ],
   imports: [
     BrowserModule,

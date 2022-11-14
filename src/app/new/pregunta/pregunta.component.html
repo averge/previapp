@@ -1,0 +1,31 @@
+<form [formGroup]="nuevaPregunta" align="center">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Pregunta</mat-label>
+      <input matInput placeholder="Pregunta?" name="pregunta" formControlName="pregunta">
+      <mat-error>
+        <span *ngIf="nuevaPregunta.controls['pregunta'].hasError('required')">
+          La pregunta es obligatorio
+        </span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      
+      <mat-label>
+        tipo
+      </mat-label>
+        <mat-select placeholder="Tipo de pregunta" formControlName="tipo">
+          <mat-option *ngFor="let tipo of tiposDePregunta" [value]="tipo.id">
+            {{tipo.descripcion}}
+          </mat-option>
+        </mat-select>
+  
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPregunta()">
+      Agregar pregunta
+    </button>
+    <button mat-raised-button color="warn"(click)="cancelar()">
+        Cancelar
+    </button>
+  
+  </form>

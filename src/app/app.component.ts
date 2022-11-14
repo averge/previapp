@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ParticipanteComponent } from './new/participante/participante.component';
+import { PreguntaComponent } from './new/pregunta/pregunta.component';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +13,11 @@ export class AppComponent {
   title = 'previapp';
   jugando=false
   htmlcode:string=""
-  change=true
   profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
   participantes:any=[{nombre:"rt1"},{nombre:"rt2"}, {nombre:"mp1"}, {nombre:"mp2"}];
-  nosotros:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"},{nombre:"Augusto"}];
-  preguntas:any=[{pregunta:"le da un reto a", tipo:1, fire:true}, {pregunta:"le hace masajes a", tipo:1,fire:true},{pregunta:"Quien la tiene mas grande?", tipo:2, fire:true},{pregunta:"le toca el cula a", tipo:1,fire:true},{pregunta:"elige una prenda con ayuda de", tipo:1,fire:false}, {pregunta:"se sienta por el resto de la ronda encima de", tipo:1,fire:true},
+  nosotros:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"}];
+  preguntas:any=[{pregunta:"le da un reto a", tipo:1, fire:true}, {pregunta:"le hace masajes a", tipo:1,fire:true},{pregunta:"Quien la tiene mas grande?", tipo:2, fire:true},{pregunta:"le toca el culo a", tipo:1,fire:true},{pregunta:"elige una prenda con ayuda de", tipo:1,fire:false}, {pregunta:"se sienta por el resto de la ronda encima de", tipo:1,fire:true},
   {pregunta:"Yo nunca he besado al herman@ de un amigo", tipo:2, fire:false},
   {pregunta:"Yo nunca chape despues de haber quebrado", tipo:2, fire:false},
   {pregunta:"Yo nunca menti mi edad para levantarme a alguien", tipo:2, fire:false},
@@ -41,7 +43,7 @@ export class AppComponent {
   )
   pregunta=' '
 p=""
-
+constructor( public dialog: MatDialog) {}
   addPersona(){
       this.participantes.push(this.nuevaPersona.value);
     
@@ -67,7 +69,6 @@ p=""
   random(){
     this.p=""
 
-    this.change=false
     this.jugando=true
     const temp=this.participantes
     this.participantes=[...this.participantes, ...this.nosotros]
@@ -104,7 +105,6 @@ p=""
     this.fire1()
   }
   fire1(){
-    this.change=false
     this.jugando=true
     let preg;
     let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
@@ -125,17 +125,49 @@ p=""
     if (preguntasPicantes[randomPregunta].tipo==3){
       this.pregunta= nombre1 + " " + preguntasPicantes[randomPregunta].pregunta
     }
-    this.change=true;
 
     this.htmlcode='<div class="demo1__colored-blocks" name="girar">';
   }, 5);
   setTimeout(()=>{
     this.p=this.pregunta
   },1000)
-  console.log(preguntasPicantes)
   }
 
   
 
-  
+  nuevopj(){
+    const dialogRef = this.dialog.open(ParticipanteComponent, {
+      disableClose: true,
+      panelClass: 'js-dialog',  data: {}   
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(!result){
+        return;
+      }else{
+        console.log(result)
+
+      this.participantes.push(result);
+    
+        //this.bloques.push(result);
+        //this.sinBloques=false
+        //this.snackbar.open("Bloque creado con exito", "Cerrar", { duration: 4000, });
+      }
+      });
+  }
+
+  nuevaPreg(){
+    const dialogRef = this.dialog.open(PreguntaComponent, {
+      disableClose: true,
+      panelClass: 'js-dialog',  data: {}   
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(!result){
+        return;
+      }else{
+        console.log(result)
+        this.preguntas.push(result);
+      }
+      });
+    }
+
 }

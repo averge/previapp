@@ -1,8 +1,15 @@
-<div class="test">
-
-</div>
-
+<div class="home">
+  
 <div *ngIf="!jugando">
+  <div class="field"> 
+  <a class="sns-btn" (click)="nuevopj()">
+		<i style="font-size: 250%;">🙋‍♂️</i>
+	</a>
+  <a class="nuevaPregunta" (click)="nuevaPreg()">
+		<i style="font-size: 250%;">📝</i>
+	</a>
+</div>
+  <!--
 <form [formGroup]="nuevaPersona" align="center">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Nombre</mat-label>
@@ -50,9 +57,9 @@
   </button>
 
 </form>
-
+-->
 <h1 style="text-align: center;">
-  PARTICIPANTES
+  Jugadores
 </h1>
 
 <table align="center">
@@ -74,10 +81,13 @@
     </td>
   </tr>
 </table>
+
 </div>
 <div class="wrap" *ngIf="!jugando">
   <button (click)="random()" class="button_start">Jugar</button>
 </div>
+</div>
+
 <div *ngIf="jugando">
   
 
@@ -141,5 +151,6 @@
 ​
 
 </div>
+
 
 
