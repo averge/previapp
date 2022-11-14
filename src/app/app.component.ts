@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
   title = 'previapp';
   jugando=false
+  htmlcode:string=""
   change=true
   profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
@@ -36,7 +37,23 @@ export class AppComponent {
     console.log(this.nuevaPregunta.value)
     this.nuevaPregunta.reset();
   }
+
+  next(){
+
+    let element = document.getElementsByClassName('fc-oss');
+    //<HTMLElement><unknown>document.getElementsByName("girar")[0].removeAttribute('class')
+   // ( (<HTMLElement>document.getElementsByClassName("demo1__colored-blocks")[0]).setAttribute('class', 'demo1__colored-blocks'))
+   this.random()
+  }
   random(){
+    //let element = document.getElementsByClassName('fc-oss');
+   //console.log( (<HTMLElement>document.getElementsByClassName("demo1__colored-blocks")[0]))
+    //animation = 'animation: demoAnim 4s ease-in-out';
+   
+    //console.log(div[0])
+   
+    //div[0].style.animation-play-state
+   
     this.change=false
     this.jugando=true
     let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
@@ -46,6 +63,7 @@ export class AppComponent {
       randomParticipante2 = Math.floor(Math.random() * this.participantes.length);
     }
     let randomPregunta = Math.floor(Math.random() * this.preguntas.length);
+    setTimeout(() => {
     if (this.preguntas[randomPregunta].tipo==1){
       this.pregunta=nombre1 + " " + this.preguntas[randomPregunta].pregunta + " " + this.participantes[randomParticipante2].nombre
     }
@@ -55,6 +73,9 @@ export class AppComponent {
     if (this.preguntas[randomPregunta].tipo==3){
       this.pregunta= nombre1 + " " + this.preguntas[randomPregunta].pregunta
     }
-    this.change=true
+    this.change=true;
+
+    this.htmlcode='<div class="demo1__colored-blocks" name="girar">';
+  }, 1500);
   }
 }

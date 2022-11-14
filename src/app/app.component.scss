@@ -245,18 +245,19 @@ body {
   &__text {
     
     position: absolute;
-    left: 50%;
+    //left: 50%;
     top: 10%;
-    width: $sizeBig;
+    width: 95%;
     height: 50%;
-    margin-left: $sizeBig/-2;
+    //margin-left: $sizeBig/-2;
     text-align: center;
     line-height: $size;
     font-size: 30px;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     transform: translateX(10px);
+    
     animation: hideText $totalAT ;
   }
 }
@@ -321,17 +322,17 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
 
   &__colored-blocks {
     overflow: hidden;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: $sizeBig;
+    //position: absolute;
+    //left: 50%;
+    //top: 0;
+   //width: $sizeBig;
     height: 100%;
-    margin-left: $sizeBig/-2;
+    //margin-left: $sizeBig/-2;
     padding: $pad;
     border-radius: $contBr;
     perspective: 1000px;
-    animation: demoAnim $totalAT ease-in-out ,
-      contAnim $totalAT ;
+    animation: demoAnim $totalAT ease-in-out 
+     ;
 
     &-rotater {
       position: absolute;
@@ -381,7 +382,7 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
     overflow: visible;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 10%;
     width: $numSize;
     height: $numSize;
     margin-left: $numSize/-2;
@@ -390,7 +391,7 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
     &-path {
       fill: none;
       stroke-width: 10px;
-      stroke: #fff;
+      stroke: rgb(7, 0, 0);
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-dasharray: 0, $totalLen;
@@ -402,17 +403,17 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
 
   &__text {
     position: absolute;
-    left: 50%;
+    //left: 50%;
     top: 10%;
-    width: $sizeBig;
+    width: 95%;
     height: 50%;
-    margin-left: $sizeBig/-2;
+    //margin-left: $sizeBig/-2;
     text-align: center;
     line-height: $size;
-    font-size: 20px;
+    font-size: 30px;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 1px;
     transform: translateX(10px);
     
     animation: hideText $totalAT ;
@@ -528,14 +529,14 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
 
   &__text {
     position: absolute;
-    left: 50%;
+    //left: 50%;
     top: 10%;
-    width: 100%;
+    width: 95%;
     height: 50%;
-    margin-left: $sizeBig/-2;
+    //margin-left: $sizeBig/-2;
     text-align: center;
     line-height: $size;
-    font-size: 10px;
+    font-size: 30px;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -543,5 +544,50 @@ $totalLen: $num1Len + $num2Len + $num3Len + $numJoin1-2 + $numJoin2-3 +
     
     animation: hideText $totalAT ;
   }
+    }
+
+    .back{
+
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 350;
+      color: #ffffff;
+      background: #d02b22;
+      border: none;
+      border-radius: 1000px;
+      box-shadow: 12px 12px 24px rgba(69, 137, 239, 0.64);
+      //position: relative;
+      padding: 10px;
+      
+      background-size: 100%;
+      position: absolute;
+  left:    0;
+  bottom:   0;
+      transition: background 0.3s ease-in-out;
+  
+    }
+
+    .next {
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 350;
+      color: #ffffff;
+      background: #22d034;
+      border: none;
+      border-radius: 1000px;
+      box-shadow: 12px 12px 24px rgba(69, 137, 239, 0.64);
+      transition: all 0.3s ease-in-out 0s;
+      cursor: pointer;
+      outline: none;
+      //position: relative;
+      padding: 10px;
+      
+      background-size: 100%;
+      position: absolute;
+  right:    0;
+  bottom:   0;
+      transition: background 0.3s ease-in-out;
     }
   }

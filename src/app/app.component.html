@@ -75,38 +75,19 @@
 
 <div *ngIf="jugando">
   
-    <!--<div><h1 *ngIf="pregunta!=''" style="font-family: sans-serif; text-align: center;">{{pregunta}}</h1></div>-->
-
-
-
-
-
-
-<!--
-<div class="demo">
-  <div class="demo__colored-blocks">
-    <div class="demo__colored-blocks-rotater">
-      <div class="demo__colored-block"></div>
-      <div class="demo__colored-block"></div>
-      <div class="demo__colored-block"></div>
-    </div>
-    <div class="demo__colored-blocks-inner"></div>
-    <div class="demo__text">{{pregunta}}</div>
-  </div>
-  
-</div>
--->
 
 
 <div class="demo1" >
-  <div class="demo1__colored-blocks">
+  <div class="demo1__colored-blocks" name="girar">
+    
     <div class="demo1__colored-blocks-rotater">
       <div class="demo1__colored-block"></div>
       <div class="demo1__colored-block"></div>
       <div class="demo1__colored-block"></div>
     </div>
     <div class="demo1__colored-blocks-inner"></div>
-    <div class="demo__text">{{pregunta}}</div>
+    <div class="demo1__text">{{pregunta}}</div>
+    
   </div>
   <div class="demo1__inner">
     <svg class="demo1__numbers" viewBox="0 0 100 100">
@@ -133,10 +114,10 @@
 
 
   
-<button (click)="jugando=false" class="back">
+<button (click)="jugando=false; pregunta=''" class="back">
   Parar
 </button>
-<button (click)="random()" class="next">
+<button (click)="next()" class="next">
   Siguiente
   
 </button>
@@ -144,4 +125,7 @@
 
     
 </div>​
+
+
+
 
