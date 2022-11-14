@@ -22,8 +22,16 @@ export class AppComponent {
   {pregunta:"Yo nunca estuve con alguien 5 años mayor que yo", tipo:2, fire:false},
   {pregunta:"da catedra de como hacer un buen pt", tipo:3, fire:true},
   {pregunta:"recomienda una pose sexual con funcamentos obvio", tipo:3, fire:true},
+  {pregunta:"hace un perro instenso", tipo:3, fire:true},
 
-  {pregunta:"todos toman 5 tragos", tipo:2, fire:false}, {pregunta:"Toma 5 tragos", tipo:3, fire:false}, {pregunta:"Toma 10 tragos", tipo:3, fire:false}, {pregunta:"Toma 1 trago", tipo:3, fire:false}, {pregunta:"Hace fondo blanco", tipo:3, fire:false},{pregunta:"Hace un baile sensual", tipo:3, fire:true}, {pregunta:"le da un beso a", tipo:1, fire:true}, {pregunta:"hace twerk contra la pared", tipo:3, fire:true}];
+  {pregunta:"le chupa el dedo de forma sensual a", tipo:1,fire:true},
+  {pregunta:"le propone casamiento a", tipo:1,fire:false},
+  {pregunta:"le muerde el labio a", tipo:1,fire:true},
+  {pregunta:"se saca una prenda", tipo:3, fire:true},
+  {pregunta:"todos toman 5 tragos", tipo:2, fire:false}, {pregunta:"Toma 5 tragos", tipo:3, fire:false}, {pregunta:"Toma 10 tragos", tipo:3, fire:false}, {pregunta:"Toma 1 trago", tipo:3, fire:false}, {pregunta:"Hace fondo blanco", tipo:3, fire:false},{pregunta:"Hace un baile sensual", tipo:3, fire:true}, {pregunta:"le da un beso a", tipo:1, fire:true}, {pregunta:"hace twerk contra la pared", tipo:3, fire:true}
+
+
+];
   nuevaPersona = new FormGroup(
     {nombre : new FormControl('', [Validators.required]),
     })
@@ -41,9 +49,14 @@ p=""
   }
 
   addPregunta(){
-    this.preguntas.push(this.nuevaPregunta.value);
-    console.log(this.preguntas)
-    console.log(this.nuevaPregunta.value)
+    let p=this.nuevaPregunta.value
+    if (Array.from(this.nuevaPregunta.value.pregunta)[0]==0){
+      p.pregunta=p.pregunta.substring(1)
+      p.fire=true
+    }else{
+      p.fire=false
+    }
+    this.preguntas.push(p);
     this.nuevaPregunta.reset();
   }
 
