@@ -13,8 +13,17 @@ export class AppComponent {
   change=true
   profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
-  participantes:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"}];
-  preguntas:any=[{pregunta:"se la chupa a", tipo:1}, {pregunta:"se coge a la mama de", tipo:1},{pregunta:"Quien la tiene mas grande?", tipo:2},{pregunta:"Quien se la chupo a quien?", tipo:2}, {pregunta:"Toma 5 tragos", tipo:3},{pregunta:"Hace un baile sensual", tipo:3}, {pregunta:"le da un beso a", tipo:1}, {pregunta:"Chupala me canse de pesnar preguntas!!", tipo:3}];
+  participantes:any=[{nombre:"rt1"},{nombre:"rt2"}, {nombre:"mp1"}, {nombre:"mp2"}];
+  nosotros:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"},{nombre:"Augusto"}];
+  preguntas:any=[{pregunta:"le da un reto a", tipo:1, fire:true}, {pregunta:"le hace masajes a", tipo:1,fire:true},{pregunta:"Quien la tiene mas grande?", tipo:2, fire:true},{pregunta:"le toca el cula a", tipo:1,fire:true},{pregunta:"elige una prenda con ayuda de", tipo:1,fire:false}, {pregunta:"se sienta por el resto de la ronda encima de", tipo:1,fire:true},
+  {pregunta:"Yo nunca he besado al herman@ de un amigo", tipo:2, fire:false},
+  {pregunta:"Yo nunca chape despues de haber quebrado", tipo:2, fire:false},
+  {pregunta:"Yo nunca menti mi edad para levantarme a alguien", tipo:2, fire:false},
+  {pregunta:"Yo nunca estuve con alguien 5 años mayor que yo", tipo:2, fire:false},
+  {pregunta:"da catedra de como hacer un buen pt", tipo:3, fire:true},
+  {pregunta:"recomienda una pose sexual con funcamentos obvio", tipo:3, fire:true},
+
+  {pregunta:"todos toman 5 tragos", tipo:2, fire:false}, {pregunta:"Toma 5 tragos", tipo:3, fire:false}, {pregunta:"Toma 10 tragos", tipo:3, fire:false}, {pregunta:"Toma 1 trago", tipo:3, fire:false}, {pregunta:"Hace fondo blanco", tipo:3, fire:false},{pregunta:"Hace un baile sensual", tipo:3, fire:true}, {pregunta:"le da un beso a", tipo:1, fire:true}, {pregunta:"hace twerk contra la pared", tipo:3, fire:true}];
   nuevaPersona = new FormGroup(
     {nombre : new FormControl('', [Validators.required]),
     })
@@ -22,8 +31,8 @@ export class AppComponent {
     {pregunta : new FormControl('', [Validators.required]),
     tipo : new FormControl('', [Validators.required])}
   )
-  pregunta=''
-
+  pregunta=' '
+p=""
 
   addPersona(){
       this.participantes.push(this.nuevaPersona.value);
@@ -39,43 +48,81 @@ export class AppComponent {
   }
 
   next(){
-
-    let element = document.getElementsByClassName('fc-oss');
-    //<HTMLElement><unknown>document.getElementsByName("girar")[0].removeAttribute('class')
-   // ( (<HTMLElement>document.getElementsByClassName("demo1__colored-blocks")[0]).setAttribute('class', 'demo1__colored-blocks'))
+    this.pregunta=''
    this.random()
   }
   random(){
-    //let element = document.getElementsByClassName('fc-oss');
-   //console.log( (<HTMLElement>document.getElementsByClassName("demo1__colored-blocks")[0]))
-    //animation = 'animation: demoAnim 4s ease-in-out';
-   
-    //console.log(div[0])
-   
-    //div[0].style.animation-play-state
-   
+    this.p=""
+
     this.change=false
     this.jugando=true
+    const temp=this.participantes
+    this.participantes=[...this.participantes, ...this.nosotros]
     let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
     let nombre1 =this.participantes[randomParticipante1].nombre
     let randomParticipante2 = Math.floor(Math.random() * this.participantes.length);
     while(randomParticipante1==randomParticipante2){
       randomParticipante2 = Math.floor(Math.random() * this.participantes.length);
     }
-    let randomPregunta = Math.floor(Math.random() * this.preguntas.length);
+    let preguntasTranqui= this.preguntas.filter(
+      (pregunta:any) => pregunta.fire==false
+    )
+    let randomPregunta = Math.floor(Math.random() * preguntasTranqui.length);
     setTimeout(() => {
-    if (this.preguntas[randomPregunta].tipo==1){
-      this.pregunta=nombre1 + " " + this.preguntas[randomPregunta].pregunta + " " + this.participantes[randomParticipante2].nombre
+    if (preguntasTranqui[randomPregunta].tipo==1){
+      this.pregunta=nombre1 + " " + preguntasTranqui[randomPregunta].pregunta + " " + this.nosotros[randomParticipante2].nombre
     }
-    if (this.preguntas[randomPregunta].tipo==2){
-      this.pregunta=this.preguntas[randomPregunta].pregunta
+    if (preguntasTranqui[randomPregunta].tipo==2){
+      this.pregunta=preguntasTranqui[randomPregunta].pregunta
     }
-    if (this.preguntas[randomPregunta].tipo==3){
-      this.pregunta= nombre1 + " " + this.preguntas[randomPregunta].pregunta
+    if (preguntasTranqui[randomPregunta].tipo==3){
+      this.pregunta= nombre1 + " " + preguntasTranqui[randomPregunta].pregunta
+    }
+  }, 5);
+    setTimeout(() => {
+      this.p=this.pregunta
+    },1000);
+
+    this.participantes=temp
+  }
+  fire(){
+    this.pregunta=''
+    this.p=""
+    this.fire1()
+  }
+  fire1(){
+    this.change=false
+    this.jugando=true
+    let preg;
+    let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
+    let nombre1 =this.participantes[randomParticipante1].nombre
+    let randomParticipante2 = Math.floor(Math.random() * this.nosotros.length);
+    randomParticipante2 = Math.floor(Math.random() * this.nosotros.length);
+    let preguntasPicantes= this.preguntas.filter(
+      (pregunta:any) => pregunta.fire==true
+    )
+    let randomPregunta = Math.floor(Math.random() * preguntasPicantes.length);
+    setTimeout(() => {
+    if (preguntasPicantes[randomPregunta].tipo==1){
+      this.pregunta=nombre1 + " " + preguntasPicantes[randomPregunta].pregunta + " " + this.nosotros[randomParticipante2].nombre
+    }
+    if (preguntasPicantes[randomPregunta].tipo==2){
+      this.pregunta=preguntasPicantes[randomPregunta].pregunta
+    }
+    if (preguntasPicantes[randomPregunta].tipo==3){
+      this.pregunta= nombre1 + " " + preguntasPicantes[randomPregunta].pregunta
     }
     this.change=true;
 
     this.htmlcode='<div class="demo1__colored-blocks" name="girar">';
-  }, 1500);
+  }, 5);
+  setTimeout(()=>{
+    this.p=this.pregunta
+  },1000)
+  console.log(preguntasPicantes)
   }
+
+  
+
+  
 }

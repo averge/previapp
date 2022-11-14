@@ -58,6 +58,15 @@
 <table align="center">
 
   <tr >
+
+    <td *ngFor="let persona of nosotros" align="center">{{persona.nombre}}
+      <tr > 
+    <td><button mat-raised-button color="secundary" (click)="participantes.splice(persona,1);">❌</button></td>
+      </tr>
+    
+    </td>
+  </tr>
+  <tr>
     <td *ngFor="let persona of participantes" align="center">{{persona.nombre}}
       <tr > 
     <td><button mat-raised-button color="secundary" (click)="participantes.splice(persona,1);">❌</button></td>
@@ -69,16 +78,17 @@
 <div class="wrap" *ngIf="!jugando">
   <button (click)="random()" class="button_start">Jugar</button>
 </div>
-
-
-
-
 <div *ngIf="jugando">
+  
+
+<div *ngIf="pregunta!=''">
+
+
   
 
 
 <div class="demo1" >
-  <div class="demo1__colored-blocks" name="girar">
+  <div class="demo1__colored-blocks" name="girar" id="girar" >
     
     <div class="demo1__colored-blocks-rotater">
       <div class="demo1__colored-block"></div>
@@ -86,7 +96,7 @@
       <div class="demo1__colored-block"></div>
     </div>
     <div class="demo1__colored-blocks-inner"></div>
-    <div class="demo1__text">{{pregunta}}</div>
+    <div class="demo1__text">{{p}}</div>
     
   </div>
   <div class="demo1__inner">
@@ -113,10 +123,14 @@
 
 
 
-  
+</div>
 <button (click)="jugando=false; pregunta=''" class="back">
   Parar
 </button>
+<button (click)="fire()" class="fire">
+  🔥
+</button>
+
 <button (click)="next()" class="next">
   Siguiente
   
@@ -124,8 +138,8 @@
 
 
     
-</div>​
+​
 
-
+</div>
 
 
