@@ -18,7 +18,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ParticipanteComponent } from './new/participante/participante.component';
 import { PreguntaComponent } from './new/pregunta/pregunta.component';
-
+import { MatRadioModule } from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { PreguntaComponent } from './new/pregunta/pregunta.component';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

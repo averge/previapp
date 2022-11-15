@@ -12,6 +12,7 @@ import { PreguntaComponent } from './new/pregunta/pregunta.component';
 export class AppComponent {
   title = 'previapp';
   jugando=false
+  modo=""
   htmlcode:string=""
   profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
@@ -64,9 +65,24 @@ constructor( public dialog: MatDialog) {}
 
   next(){
     this.pregunta=''
-   this.random()
+    if (this.modo=="mayormenor"){
+      this.randomMayorMenor()
+    }
+    if (this.modo=="modoJugar"){
+      this.random()
+    }
+    if (this.modo=="nombreAleatorio"){
+      this.randomName()
+    }
+    if (this.modo=="barquito"){
+      this.barquito()
+    }
+    if (this.modo=="yoNunca"){
+      this.yoNunca()
+    }
   }
   random(){
+    this.modo="modoJugar"
     this.p=""
 
     this.jugando=true
@@ -169,5 +185,62 @@ constructor( public dialog: MatDialog) {}
       }
       });
     }
+    mayormenor(){
+      this.modo="mayormenor"
+      this.jugando=true
+      this.randomMayorMenor()
+    }
 
+    randomMayorMenor(){
+      this.p=""
+
+      this.jugando=true
+      setTimeout(() => {
+        this.pregunta=(Math.floor(Math.random()*12)).toString()
+    }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      },1000);
+    }
+    randomName(){
+      this.modo="nombreAleatorio"
+      this.p=""
+
+      let nombre=[...this.participantes, ...this.nosotros]
+      this.jugando=true
+      setTimeout(() => {
+        this.pregunta=nombre[Math.floor(Math.random()*nombre.length)].nombre
+    }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      },900);
+    }
+
+    barquito(){
+      let opciones=["marcas de auto", "marcas de celulares", "tipos de bebida", "jugadores de gran hermano", "equipos de futbol", "marcas de ropa", "capitales del mundo"]
+      this.modo="barquito"
+      this.p=""
+      this.jugando=true
+      setTimeout(() => {
+        this.pregunta="Tengo un barquito lleno de " + opciones[Math.floor(Math.random()*opciones.length)]
+      }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      }
+      ,900);
+    }
+
+    yoNunca(){
+      let opciones=["volvi con un ex","use esposas o algo similar", "estuve con alguien 5 años mayor que yo"," menti mi edad para levantarme a alguien"," chape despues de haber quebrado"]
+      this.modo="yoNunca"
+      this.p=""
+      this.jugando=true
+      setTimeout(() => {
+        this.pregunta="Yo nunca " + opciones[Math.floor(Math.random()*opciones.length)]
+      }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      }
+      ,900);
+    }
 }
