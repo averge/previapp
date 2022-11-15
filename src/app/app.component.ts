@@ -16,7 +16,7 @@ export class AppComponent {
   htmlcode:string=""
   profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
-  participantes:any=[{nombre:"rt1"},{nombre:"rt2"}, {nombre:"mp1"}, {nombre:"mp2"}];
+  participantes:any=[{nombre:"Marti"},{nombre:"Pili"}, {nombre:"Mili"}, {nombre:"Agus"}];
   nosotros:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"}];
   preguntas:any=[{pregunta:"le da un reto a", tipo:1, fire:true}, {pregunta:"le hace masajes a", tipo:1,fire:true},{pregunta:"Quien la tiene mas grande?", tipo:2, fire:true},{pregunta:"le toca el culo a", tipo:1,fire:true},{pregunta:"elige una prenda con ayuda de", tipo:1,fire:false}, {pregunta:"se sienta por el resto de la ronda encima de", tipo:1,fire:true},
   {pregunta:"Yo nunca he besado al herman@ de un amigo", tipo:2, fire:false},

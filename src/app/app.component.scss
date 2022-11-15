@@ -749,6 +749,7 @@ $body-background: #353535;
 		font-size: 30px;
 		text-transform: uppercase;
 		font-weight: 700;
+    
 		font-family: "Josefin Sans", sans-serif;
 		//background: #efefbb; /* fallback for old browsers */
   //background: -webkit-linear-gradient(to right, #efefbb, #d4d3dd); /* Chrome 10-25, Safari 5.1-6 */
@@ -765,3 +766,43 @@ $body-background: #353535;
 	}
 }
 
+ 
+
+
+
+
+$size: 5px;
+
+.tituloHome {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	font-weight: normal;
+	width: 100%;
+	text-align: center;
+  letter-spacing: 20px;
+	
+	font-size: 40px;
+	background: linear-gradient(
+		-45deg, 
+		#4bc0c8 25%, 
+		#feac5e 25%, 
+		#feac5e 50%, 
+		#4bc0c8 50%, 
+		#4bc0c8 75%, 
+		#feac5e 75%, 
+		#feac5e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: $size $size;
+	background-position: 0 0;
+	animation: stripes 1s linear infinite;
+}	
+
+@keyframes stripes {
+	100% { 
+		background-position: $size 0, $size 0, $size 0;
+	}
+}

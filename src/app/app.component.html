@@ -1,12 +1,13 @@
 <div class="home">
+ 
+    <h1 *ngIf="modo==''" class="tituloHome">PREVIAPP</h1>
+ 
   <div class="titulo">
   <H1 *ngIf="modo=='mayormenor'">MAYOR MENOR A 12</H1>
   <H1 *ngIf="modo=='nombreAleatorio'">NOMBRE ALEATORIO</H1>
   <H1 *ngIf="modo=='barquito'">BARQUITO ⛵️</H1>
   <H1 *ngIf="modo=='modoJugar'">JUEGO VARIADO</H1>
   <H1 *ngIf="modo=='yoNunca'">YO NUNCA 🔙</H1>
-
-
 </div>
 <div *ngIf="!jugando">
   <div class="field"> 
