@@ -21,11 +21,12 @@
   
     </mat-form-field>
     
-    <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPregunta()">
-      Agregar pregunta
-    </button>
-    <button mat-raised-button color="warn"(click)="cancelar()">
-        Cancelar
-    </button>
+    
   
   </form>
+  <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPregunta()">
+    Agregar pregunta
+  </button>
+  <button mat-raised-button color="warn"(click)="cancelar()">
+      Cancelar
+  </button>
