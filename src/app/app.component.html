@@ -127,11 +127,16 @@
 <div style="  display: flex;
 align-items: center;
 justify-content: center; " *ngIf="modo=='verdadOREto'">
-    <button mat-raised-button color="primary" (click)="clickVerdad();vr='verdad'" style="margin:7%;width: 100px;
+    <button mat-raised-button color="primary" *ngIf="!vrFire" (click)="clickVerdad();vr='verdad'" style="margin:7%;width: 100px;
     height: 50px;">Verdad</button>
-    <button mat-raised-button color="warn" (click)="clickReto();vr='reto'" style="margin:7%;width: 100px;
+    <button mat-raised-button color="primary" *ngIf="vrFire" (click)="clickVerdad();vr='verdad'" class="buttonOnFire" style="margin:7%;width: 100px;
+    height: 50px;">Verdad</button>
+    <button mat-raised-button color="warn" *ngIf="!vrFire" (click)="clickReto();vr='reto'" style="margin:7%;width: 100px;
+    height: 50px;" >Reto</button>
+    <button mat-raised-button color="warn" *ngIf="vrFire" (click)="clickReto();vr='reto'" class="buttonOnFire" style="margin:7%;width: 100px;
     height: 50px;" >Reto</button>
   </div>
+  
   </div>
   
 </div>
@@ -144,8 +149,11 @@ justify-content: center; " *ngIf="modo=='verdadOREto'">
 <button (click)="jugando=false; pregunta=''; modo=''" class="back">
   Parar
 </button>
-<button (click)="fire()" *ngIf="modo=='modoJugar'" class="fire" >
+<button (click)="fire()" *ngIf="modo=='modoJugar' || modo=='verdadOREto' && !vrFire" class="fire" >
   🔥
+</button>
+<button (click)="fire()" *ngIf="modo=='verdadOREto' && vrFire" class="fire" >
+  😇
 </button>
 
 <button (click)="next()" *ngIf="modo!='verdadOREto'" class="next">

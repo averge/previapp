@@ -15,6 +15,7 @@ export class AppComponent {
 
   showJugadores=true
   vr=''
+  vrFire=false
   title = 'previapp';
   jugando=false
   modo=""
@@ -121,9 +122,14 @@ constructor( public dialog: MatDialog) {}
     this.participantes=temp
   }
   fire(){
-    this.pregunta=''
-    this.p=""
-    this.fire1()
+    if (this.modo=="modoJugar"){
+      this.pregunta=''
+      this.p=""
+      this.fire1()
+    }
+    if (this.modo=="verdadOREto"){
+      this.vrFire=!this.vrFire
+    }
   }
   fire1(){
     this.jugando=true
@@ -258,10 +264,15 @@ constructor( public dialog: MatDialog) {}
     clickVerdad(){
       this.next()
       this.modo="verdadOREto"
-      let verdades=["verdad 1", "verdad 2", "verdad 3"];
+      let verdades=["crees en la vida extraterreste", "measte alguna vez en una pileta", "te gusta el anime", "menciona una virtud de cada participante", "perdonarias una infidelidad"];
+      let verdadp=["fingiste un orgasmo", "cual es tu fantasia sexual", "cual fue tu record de pajas en un dia","como fue tu primera vez", "cual fue el video porno mas bizarro que viste", "del 1 al 10 que tan peludo tenes el culo", "a quien te cogerias del grupo"]
       this.p=""
       setTimeout(() => {
-        this.pregunta= verdades[Math.floor(Math.random()*verdades.length)]
+        if(!this.vrFire){
+          this.pregunta= verdades[Math.floor(Math.random()*verdades.length)]
+        }else{
+          this.pregunta= verdadp[Math.floor(Math.random()*verdadp.length)]
+        }
       }, 5);
       setTimeout(() => {
         this.p=this.pregunta
@@ -271,10 +282,16 @@ constructor( public dialog: MatDialog) {}
     clickReto(){
       this.next()
       this.modo="verdadOREto"
-      let reto=["reto 1", "reto 2", "reto 3"];
+      let reto=["abraza a todos los participantes", "imita a otro jugador y que el resto adivine quien es", "tirate un freestyle", "imita un personaje de los simpsons", "la persona de tu derecha te puede peinar como quiera"];
+      let retop=["sentate encima del jugador que esta enfrente", "dale un beso al jugador mas lejano", "apoya la mano en la entrepierna del jugador de la derecha", "chupar un dedo de forma sensual del jugador a al izquierda"]
       this.p=""
       setTimeout(() => {
-        this.pregunta= reto[Math.floor(Math.random()*reto.length)]
+        if(!this.vrFire){
+          this.pregunta= reto[Math.floor(Math.random()*reto.length)]
+        }
+        else{
+          this.pregunta= retop[Math.floor(Math.random()*retop.length)]
+        }
       }, 5);
       setTimeout(() => {
         this.p=this.pregunta
