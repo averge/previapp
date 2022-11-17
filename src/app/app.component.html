@@ -148,16 +148,18 @@ justify-content: center; " *ngIf="modo=='verdadOREto'">
 <button (click)="jugando=false; pregunta=''; modo=''; vr=''; vrFire=false" class="back">
   Parar
 </button>
-<button (click)="fire()" *ngIf="modo=='modoJugar' || modo=='verdadOREto' && !vrFire" class="fire" >
+<button (click)="fire()" *ngIf="vrFire==false && (modo=='modoJugar' || modo=='verdadOREto')" class="fire" >
   🔥
 </button>
-<button (click)="fire()" *ngIf="modo=='verdadOREto' && vrFire" class="fire" >
+<button (click)="fire()" *ngIf="(modo=='modoJugar' || modo=='verdadOREto') && vrFire==true" class="fire" >
   😇
 </button>
 
-<button (click)="next()" *ngIf="modo!='verdadOREto'" class="next">
+<button (click)="next()" *ngIf="!vrFire && modo!='verdadOREto'" class="next">
   Siguiente
-  
+</button>
+<button (click)="next()" *ngIf="modo!='verdadOREto' && vrFire" class="buttonOnFire next">
+  Siguiente
 </button>
 
 

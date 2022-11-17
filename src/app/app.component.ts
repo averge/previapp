@@ -76,7 +76,11 @@ constructor( public dialog: MatDialog) {}
       this.randomMayorMenor()
     }
     if (this.modo=="modoJugar"){
+      if(this.vrFire){
+        this.fire1()
+      }else{
       this.random()
+    }
     }
     if (this.modo=="nombreAleatorio"){
       this.randomName()
@@ -122,16 +126,16 @@ constructor( public dialog: MatDialog) {}
     this.participantes=temp
   }
   fire(){
+    this.vrFire=!this.vrFire
     if (this.modo=="modoJugar"){
-      this.pregunta=''
-      this.p=""
-      this.fire1()
-    }
-    if (this.modo=="verdadOREto"){
-      this.vrFire=!this.vrFire
+      //this.pregunta=''
+      //this.p=""
+      //this.fire1()
     }
   }
   fire1(){
+    this.pregunta=''
+      this.p=""
     this.jugando=true
     let preg;
     let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
@@ -175,7 +179,7 @@ constructor( public dialog: MatDialog) {}
     if (Array.from(result.nombre)[0]==0){
       this.nosotros.push({nombre:result.nombre.substring(1)})
     }else{
-      this.participantes.push({nombre:result})
+      this.participantes.push({nombre:result.nombre})
     }
   }
       });
