@@ -20,6 +20,8 @@ import { ParticipanteComponent } from './new/participante/participante.component
 import { PreguntaComponent } from './new/pregunta/pregunta.component';
 import { MatRadioModule } from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {MatMenuModule} from '@angular/material/menu';
     PreguntaComponent
   ],
   imports: [
+    MatTooltipModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,

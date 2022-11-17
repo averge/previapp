@@ -10,6 +10,11 @@ import { PreguntaComponent } from './new/pregunta/pregunta.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+
+
+  showJugadores=true
+  vr=''
   title = 'previapp';
   jugando=false
   modo=""
@@ -35,6 +40,7 @@ export class AppComponent {
 
 
 ];
+
   nuevaPersona = new FormGroup(
     {nombre : new FormControl('', [Validators.required]),
     })
@@ -84,7 +90,6 @@ constructor( public dialog: MatDialog) {}
   random(){
     this.modo="modoJugar"
     this.p=""
-
     this.jugando=true
     const temp=this.participantes
     this.participantes=[...this.participantes, ...this.nosotros]
@@ -161,13 +166,12 @@ constructor( public dialog: MatDialog) {}
         return;
       }else{
         console.log(result)
-
-      this.participantes.push(result);
-    
-        //this.bloques.push(result);
-        //this.sinBloques=false
-        //this.snackbar.open("Bloque creado con exito", "Cerrar", { duration: 4000, });
-      }
+    if (Array.from(result.nombre)[0]==0){
+      this.nosotros.push({nombre:result.nombre.substring(1)})
+    }else{
+      this.participantes.push({nombre:result})
+    }
+  }
       });
   }
 
@@ -237,6 +241,40 @@ constructor( public dialog: MatDialog) {}
       this.jugando=true
       setTimeout(() => {
         this.pregunta="Yo nunca " + opciones[Math.floor(Math.random()*opciones.length)]
+      }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      }
+      ,900);
+    }
+
+    verdadOREto(){
+      this.vr=' '
+      this.modo="verdadOREto"
+      this.p=""
+      this.jugando=true
+    }
+
+    clickVerdad(){
+      this.next()
+      this.modo="verdadOREto"
+      let verdades=["verdad 1", "verdad 2", "verdad 3"];
+      this.p=""
+      setTimeout(() => {
+        this.pregunta= verdades[Math.floor(Math.random()*verdades.length)]
+      }, 5);
+      setTimeout(() => {
+        this.p=this.pregunta
+      }
+      ,900);
+    }
+    clickReto(){
+      this.next()
+      this.modo="verdadOREto"
+      let reto=["reto 1", "reto 2", "reto 3"];
+      this.p=""
+      setTimeout(() => {
+        this.pregunta= reto[Math.floor(Math.random()*reto.length)]
       }, 5);
       setTimeout(() => {
         this.p=this.pregunta

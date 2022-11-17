@@ -8,6 +8,8 @@
   <H1 *ngIf="modo=='barquito'">BARQUITO ⛵️</H1>
   <H1 *ngIf="modo=='modoJugar'">JUEGO VARIADO</H1>
   <H1 *ngIf="modo=='yoNunca'">YO NUNCA 🔙</H1>
+  <H1 *ngIf="modo=='verdadOREto'">VERDAD O RETO 🙈</H1>
+
 </div>
 <div *ngIf="!jugando">
   <div class="field"> 
@@ -19,7 +21,8 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="mayormenor()">
-      🃏
+      <mat-icon>🃏</mat-icon>
+      
       <span>Mayor - menor</span>
     </button>
     <button mat-menu-item (click)="randomName()">
@@ -34,6 +37,10 @@
       <mat-icon>🤫</mat-icon>
       <span>Yo nunca</span>
     </button>
+    <button mat-menu-item (click)="verdadOREto()">
+      <mat-icon> 🙈</mat-icon>
+      <span>Verdad o reto</span>
+    </button>
   </mat-menu>
   <a class="nuevaPregunta" (click)="nuevaPreg()">
 		<i style="font-size: 250%;">📝</i>
@@ -41,7 +48,8 @@
 </div>
   
 <h1 style="text-align: center;">
-  Jugadores
+  Jugadores 
+  <a *ngIf="!showJugadores" (click)="showJugadores=true">▿</a><a *ngIf="showJugadores" (click)="showJugadores=false">➢</a>
 </h1>
 
 
@@ -50,21 +58,22 @@
 
 
 
-<table align="center">
+
+    <table align="center" *ngIf="showJugadores">
 
   <tr >
 
-    <td *ngFor="let persona of nosotros" align="center" >{{persona.nombre}}
+    <td *ngFor="let persona of nosotros; let i = index" align="center" >{{persona.nombre}} 🙋‍♂️
       <tr > 
-    <td><button mat-raised-button color="secundary" style="width: 1px;" (click)="nosotros.splice(persona,1);">❌</button></td>
+    <td><button mat-raised-button color="secundary" style="width: 1px;" (click)="nosotros.splice(i,1);">❌</button></td>
       </tr>
     
     </td>
   </tr>
   <tr>
-    <td *ngFor="let persona of participantes" align="center">{{persona.nombre}}
+    <td *ngFor="let persona of participantes;  let i = index" align="center">{{persona.nombre}} 🙋‍♀️
       <tr > 
-    <td><button mat-raised-button color="secundary" (click)="participantes.splice(persona,1);">❌</button></td>
+    <td><button mat-raised-button color="secundary" (click)="participantes.splice(i,1);">❌</button></td>
       </tr>
     </td>
   </tr>
@@ -84,24 +93,23 @@
 
   
 
-
 <div class="demo1" >
-  <div class="demo1__colored-blocks" name="girar" id="girar" >
+  <div class="demo1__colored-blocks" name="girar" id="girar" *ngIf="vr!=' '" >
     
-    <div class="demo1__colored-blocks-rotater">
-      <div class="demo1__colored-block"></div>
+    <div class="demo1__colored-blocks-rotater" >
+      <div class="demo1__colored-block" ></div>
       <div class="demo1__colored-block"></div>
       <div class="demo1__colored-block"></div>
     </div>
-    <div class="demo1__colored-blocks-inner"></div>
-    <div *ngIf="modo=='modoJugar' || modo=='barquito' || modo=='yoNunca'" class="demo1__text">{{p}}</div>
+    <div class="demo1__colored-blocks-inner" ></div>
+    <div *ngIf="modo=='modoJugar' || modo=='barquito' || modo=='yoNunca' || modo=='verdadOREto'" class="demo1__text">{{p}}</div>
     <div *ngIf="modo=='mayormenor'" class="demo1__text" style="font-size: 150px;">{{p}}</div>
     <div  *ngIf="modo=='nombreAleatorio'" class="demo1__text" style="font-size: 65px;">{{p}}</div>
 
     
   </div>
-  <div class="demo1__inner">
-    <svg class="demo1__numbers" viewBox="0 0 100 100">
+  <div class="demo1__inner" >
+    <svg class="demo1__numbers" viewBox="0 0 100 100" *ngIf="vr!=' '">
       <defs>
         <path class="demo1__num-path-1" d="M40,28 55,22 55,78"/>
         <path class="demo1__num-join-1-2" d="M55,78 55,83 a17,17 0 1,0 34,0 a20,10 0 0,0 -20,-10"/>
@@ -116,6 +124,14 @@
                a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
                l0,-61 L40,28" />
     </svg>
+<div style="  display: flex;
+align-items: center;
+justify-content: center; " *ngIf="modo=='verdadOREto'">
+    <button mat-raised-button color="primary" (click)="clickVerdad();vr='verdad'" style="margin:5%;width: 100px;
+    height: 50px;">Verdad</button>
+    <button mat-raised-button color="warn" (click)="clickReto();vr='reto'" style="margin:5%;width: 100px;
+    height: 50px;" >Reto</button>
+  </div>
   </div>
   
 </div>
@@ -132,7 +148,7 @@
   🔥
 </button>
 
-<button (click)="next()" class="next">
+<button (click)="next()" *ngIf="modo!='verdadOREto'" class="next">
   Siguiente
   
 </button>
@@ -142,6 +158,3 @@
 ​
 
 </div>
-
-
-
