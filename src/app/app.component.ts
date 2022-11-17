@@ -256,6 +256,7 @@ constructor( public dialog: MatDialog) {}
 
     verdadOREto(){
       this.vr=' '
+      this.pregunta=" "
       this.modo="verdadOREto"
       this.p=""
       this.jugando=true
