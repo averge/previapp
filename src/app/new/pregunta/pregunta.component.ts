@@ -10,10 +10,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class PreguntaComponent implements OnInit {
   nuevaPregunta= new FormGroup(
     {pregunta : new FormControl('', [Validators.required]),
-    tipo : new FormControl('', [Validators.required])}
+    tipo : new FormControl('', [Validators.required]),
+    juego : new FormControl(''),}
   )
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
-
+    juego=["barquito", "yo nunca", "reto", "verdad"]
   constructor(public dialogRef: MatDialogRef<PreguntaComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {

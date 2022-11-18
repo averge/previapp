@@ -22,6 +22,18 @@
         </mat-select>
   
     </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      
+      <mat-label>
+        Juego
+      </mat-label>
+        <mat-select placeholder="juego" formControlName="juego">
+          <mat-option *ngFor="let tipo of juego" [value]="tipo">
+            {{tipo}}
+          </mat-option>
+        </mat-select>
+  
+    </mat-form-field>
     
     
   

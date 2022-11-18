@@ -47,18 +47,27 @@
 	</a>
 </div>
   
-<h1 style="text-align: center;">
-  Jugadores 
-  <a *ngIf="!showJugadores" (click)="showJugadores=true">▿</a><a *ngIf="showJugadores" (click)="showJugadores=false">➢</a>
-</h1>
+<h1 style="text-align: center;letter-spacing: 10px;">
+JUGADORES</h1>
 
 
 
 
+<table align="center" style="border-collapse: separate;
+border-spacing: 1px 20px;
+display:table;">
+  <td style="padding: 10px">
+    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of nosotros; let i = index" align="center" ><a (click)="nosotros.splice(i,1);">🚮</a> {{persona.nombre}} 🙋‍♂️
+    </tr>
 
+  </td>
+  <td  style="padding: 30px;">
+    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of participantes;  let i = index" align="center">🙋‍♀️ {{persona.nombre}} <a (click)="participantes.splice(i,1);">🚮</a>
+    </tr>
+  </td>
 
-
-
+</table>
+<!--
     <table align="center" *ngIf="showJugadores">
 
   <tr >
@@ -78,6 +87,7 @@
     </td>
   </tr>
 </table>
+ -->
 <div class="wrap" *ngIf="!jugando">
   <button (click)="random(); modo='modoJugar'" class="button_start">Jugar</button>
 </div>

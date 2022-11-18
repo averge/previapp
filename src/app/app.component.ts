@@ -12,7 +12,11 @@ import { PreguntaComponent } from './new/pregunta/pregunta.component';
 export class AppComponent {
 
 
-
+  verdades=["crees en la vida extraterreste", "measte alguna vez en una pileta", "te gusta el anime", "menciona una virtud de cada participante", "perdonarias una infidelidad"];
+  verdadp=["fingiste un orgasmo", "cual es tu fantasia sexual", "cual fue tu record de pajas en un dia","como fue tu primera vez", "cual fue el video porno mas bizarro que viste", "del 1 al 10 que tan peludo tenes el culo", "a quien te cogerias del grupo"]
+  reto=["abraza a todos los participantes", "imita a otro jugador y que el resto adivine quien es", "tirate un freestyle", "imita un personaje de los simpsons", "la persona de tu derecha te puede peinar como quiera"];
+  retop=["sentate encima del jugador que esta enfrente", "dale un beso al jugador mas lejano", "apoya la mano en la entrepierna del jugador de la derecha", "chupar un dedo de forma sensual del jugador a al izquierda"]
+      
   showJugadores=true
   vr=''
   vrFire=false
@@ -20,10 +24,10 @@ export class AppComponent {
   jugando=false
   modo=""
   htmlcode:string=""
-  profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
+  //profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
-  participantes:any=[{nombre:"Marti"},{nombre:"Pili"}, {nombre:"Mili"}, {nombre:"Agus"}];
-  nosotros:any=[{nombre:"Loren"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"}];
+  participantes:any=[{nombre:"Marti"},{nombre:"Pili"}, {nombre:"Mili"}, {nombre:"Agus"}, {nombre:"Cata"}];
+  nosotros:any=[{nombre:"Loren"},{nombre:"Augusto"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"}];
   preguntas:any=[{pregunta:"le da un reto a", tipo:1, fire:true}, {pregunta:"le hace masajes a", tipo:1,fire:true},{pregunta:"Quien la tiene mas grande?", tipo:2, fire:true},{pregunta:"le toca el culo a", tipo:1,fire:true},{pregunta:"elige una prenda con ayuda de", tipo:1,fire:false}, {pregunta:"se sienta por el resto de la ronda encima de", tipo:1,fire:true},
   {pregunta:"Yo nunca he besado al herman@ de un amigo", tipo:2, fire:false},
   {pregunta:"Yo nunca chape despues de haber quebrado", tipo:2, fire:false},
@@ -194,8 +198,16 @@ constructor( public dialog: MatDialog) {}
       if(!result){
         return;
       }else{
-        console.log(result)
-        this.preguntas.push(result);
+        if (result.juego=''){
+          this.preguntas.push(result);
+        }else{
+          if (result.juego=="reto"){
+            this.reto.push(result.pregunta);
+          }
+          if (result.juego=="verdad"){
+            this.verdades.push(result.pregunta);
+          }
+        }
       }
       });
     }
@@ -269,14 +281,12 @@ constructor( public dialog: MatDialog) {}
     clickVerdad(){
       this.next()
       this.modo="verdadOREto"
-      let verdades=["crees en la vida extraterreste", "measte alguna vez en una pileta", "te gusta el anime", "menciona una virtud de cada participante", "perdonarias una infidelidad"];
-      let verdadp=["fingiste un orgasmo", "cual es tu fantasia sexual", "cual fue tu record de pajas en un dia","como fue tu primera vez", "cual fue el video porno mas bizarro que viste", "del 1 al 10 que tan peludo tenes el culo", "a quien te cogerias del grupo"]
       this.p=""
       setTimeout(() => {
         if(!this.vrFire){
-          this.pregunta= verdades[Math.floor(Math.random()*verdades.length)]
+          this.pregunta= this.verdades[Math.floor(Math.random()*this.verdades.length)]
         }else{
-          this.pregunta= verdadp[Math.floor(Math.random()*verdadp.length)]
+          this.pregunta= this.verdadp[Math.floor(Math.random()*this.verdadp.length)]
         }
       }, 5);
       setTimeout(() => {
@@ -287,15 +297,13 @@ constructor( public dialog: MatDialog) {}
     clickReto(){
       this.next()
       this.modo="verdadOREto"
-      let reto=["abraza a todos los participantes", "imita a otro jugador y que el resto adivine quien es", "tirate un freestyle", "imita un personaje de los simpsons", "la persona de tu derecha te puede peinar como quiera"];
-      let retop=["sentate encima del jugador que esta enfrente", "dale un beso al jugador mas lejano", "apoya la mano en la entrepierna del jugador de la derecha", "chupar un dedo de forma sensual del jugador a al izquierda"]
       this.p=""
       setTimeout(() => {
         if(!this.vrFire){
-          this.pregunta= reto[Math.floor(Math.random()*reto.length)]
+          this.pregunta= this.reto[Math.floor(Math.random()*this.reto.length)]
         }
         else{
-          this.pregunta= retop[Math.floor(Math.random()*retop.length)]
+          this.pregunta= this.retop[Math.floor(Math.random()*this.retop.length)]
         }
       }, 5);
       setTimeout(() => {
