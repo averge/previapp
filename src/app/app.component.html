@@ -96,11 +96,14 @@ display:table;">
 </div>
 
 <div *ngIf="jugando">
-  
+
 
 <div *ngIf="pregunta!=''">
 
 <div class="demo1" >
+  <a class="nuevaPregunta" (click)="nuevaPreg()" style="margin: 20px;" *ngIf="modo=='barquito'|| modo=='yoNunca' || modo=='verdadOREto' || modo=='modoJugar'">
+		<i style="font-size: 250%;">📝</i>
+	</a>
   <div class="demo1__colored-blocks" name="girar" id="girar" *ngIf="vr!=' '" >
     
     <div class="demo1__colored-blocks-rotater" >

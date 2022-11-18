@@ -1,5 +1,31 @@
 
-<form [formGroup]="nuevaPregunta" align="center">
+<form [formGroup]="nuevaPreguntaEnJuego" align="center" *ngIf="data.data=='barquito'|| data.data=='yoNunca'">
+  <mat-form-field class="example-full-width" appearance="fill">
+    
+    <mat-label *ngIf="data.data=='barquito'">TENGO UN BARQUITO LLENO DE...</mat-label>
+    <input *ngIf="data.data=='barquito'" matInput placeholder="marcas de autos" name="pregunta" formControlName="pregunta">
+    <mat-label *ngIf="data.data=='yoNunca'">YO NUNCA...</mat-label>
+    <input *ngIf="data.data=='yoNunca'" matInput placeholder="tome alcohol" name="pregunta" formControlName="pregunta">
+    <mat-error>
+      <span *ngIf="nuevaPregunta.controls['pregunta'].hasError('required')">
+        La pregunta es obligatorio
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <br>
+
+  <button mat-raised-button color="primary" [disabled]="!nuevaPreguntaEnJuego.valid" (click)="addPreguntaEnJuego()">
+    Agregar pregunta
+  </button>
+
+  <button mat-raised-button color="warn"(click)="cancelar()">
+    Cancelar
+</button>
+</form>
+
+
+
+<form [formGroup]="nuevaPregunta" align="center" *ngIf="data.data=='modoJugar'">
     <mat-form-field class="example-full-width" appearance="fill">
       
       <mat-label>Pregunta</mat-label>
@@ -22,25 +48,110 @@
         </mat-select>
   
     </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-      
+    <mat-form-field class="example-full-width" appearance="fill">   
       <mat-label>
-        Juego
+        tipo
       </mat-label>
-        <mat-select placeholder="juego" formControlName="juego">
-          <mat-option *ngFor="let tipo of juego" [value]="tipo">
-            {{tipo}}
+        <mat-select placeholder="tipo" formControlName="fire">
+          <mat-option value=true>
+            picante
+          </mat-option>
+          <mat-option value=false>
+            no picante
           </mat-option>
         </mat-select>
-  
     </mat-form-field>
     
-    
+    <br>
   
-  </form>
-  <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPregunta()">
-    Agregar pregunta
-  </button>
-  <button mat-raised-button color="warn"(click)="cancelar()">
+    <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPregunta()">
+      Agregar pregunta
+    </button>
+
+    <button mat-raised-button color="warn"(click)="cancelar()">
       Cancelar
   </button>
+  </form>
+ 
+
+
+<form [formGroup]="nuevaPreguntaVR" align="center" *ngIf="data.data=='verdadOREto'">
+
+  <mat-form-field class="example-full-width" appearance="fill">   
+    <mat-label>Verdad o reto</mat-label>
+    <input matInput placeholder="verdad o reto" name="pregunta" formControlName="pregunta">
+    <mat-error>
+      <span *ngIf="nuevaPregunta.controls['pregunta'].hasError('required')">
+        La pregunta es obligatorio
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">   
+    <mat-label>
+      tipo
+    </mat-label>
+      <mat-select placeholder="tipo" formControlName="tipo">
+        <mat-option *ngFor="let tipo of vor" [value]="tipo">
+          {{tipo}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">   
+    <mat-label>
+      tipo
+    </mat-label>
+      <mat-select placeholder="tipo" formControlName="picante">
+        <mat-option *ngFor="let tipo of pica" [value]="tipo">
+          {{tipo}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+  
+  <br>
+
+  <button mat-raised-button color="primary" [disabled]="!nuevaPreguntaVR.valid" (click)="addPreguntaVR()">
+    Agregar pregunta
+  </button>
+
+  <button mat-raised-button color="warn"(click)="cancelar()">
+    Cancelar
+</button>
+
+
+</form>
+
+<form [formGroup]="nuevaPreguntaHome" align="center" *ngIf="data.data==''">
+  <mat-form-field class="example-full-width" appearance="fill">
+    
+    <mat-label>Pregunta</mat-label>
+    <input matInput placeholder="Pregunta?" name="pregunta" formControlName="pregunta">
+    <mat-error>
+      <span *ngIf="nuevaPregunta.controls['pregunta'].hasError('required')">
+        La pregunta es obligatorio
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    
+    <mat-label>
+      Juego
+    </mat-label>
+      <mat-select placeholder="juego" formControlName="juego">
+        <mat-option *ngFor="let tipo of juego" [value]="tipo">
+          {{tipo}}
+        </mat-option>
+      </mat-select>
+
+  </mat-form-field>
+  
+  <br>
+
+  <button mat-raised-button color="primary" [disabled]="!nuevaPregunta.valid" (click)="addPreguntaHome()">
+    Agregar pregunta
+  </button>
+
+  <button mat-raised-button color="warn"(click)="cancelar()">
+    Cancelar
+</button>
+</form>
+

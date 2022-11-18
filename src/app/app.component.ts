@@ -16,7 +16,8 @@ export class AppComponent {
   verdadp=["fingiste un orgasmo", "cual es tu fantasia sexual", "cual fue tu record de pajas en un dia","como fue tu primera vez", "cual fue el video porno mas bizarro que viste", "del 1 al 10 que tan peludo tenes el culo", "a quien te cogerias del grupo"]
   reto=["abraza a todos los participantes", "imita a otro jugador y que el resto adivine quien es", "tirate un freestyle", "imita un personaje de los simpsons", "la persona de tu derecha te puede peinar como quiera"];
   retop=["sentate encima del jugador que esta enfrente", "dale un beso al jugador mas lejano", "apoya la mano en la entrepierna del jugador de la derecha", "chupar un dedo de forma sensual del jugador a al izquierda"]
-      
+  yoNuncaOpciones=["volvi con un ex","use esposas o algo similar", "estuve con alguien 5 años mayor que yo"," menti mi edad para levantarme a alguien"," chape despues de haber quebrado"]
+  barquitoOpciones=["marcas de auto", "marcas de celulares", "tipos de bebida", "jugadores de gran hermano", "equipos de futbol", "marcas de ropa", "capitales del mundo"]
   showJugadores=true
   vr=''
   vrFire=false
@@ -190,22 +191,42 @@ constructor( public dialog: MatDialog) {}
   }
 
   nuevaPreg(){
+    console.log(this.modo)
     const dialogRef = this.dialog.open(PreguntaComponent, {
       disableClose: true,
-      panelClass: 'js-dialog',  data: {}   
+      panelClass: 'js-dialog',  data: {data:this.modo}   
+      
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
       if(!result){
         return;
       }else{
-        if (result.juego=''){
-          this.preguntas.push(result);
-        }else{
-          if (result.juego=="reto"){
-            this.reto.push(result.pregunta);
-          }
-          if (result.juego=="verdad"){
-            this.verdades.push(result.pregunta);
+        if (this.modo=="modoJugar"){
+          console.log("wstoofsadfas ")
+          this.preguntas.push(result)
+          console.log(this.preguntas)
+          console.log(result)
+        }
+        if (result.juego='barquito' || this.modo=='barquito'){
+          this.barquitoOpciones.push(result.pregunta)
+        }
+        if (result.juego='yoNunca' || this.modo=='yoNunca'){
+          this.yoNuncaOpciones.push(result.pregunta)
+        }
+        if (this.modo=='verdadOREto'){
+          if(result.tipo=="reto"){
+            if(result.picante=="picante"){
+              this.retop.push(result.pregunta)
+            }else{
+            this.reto.push(result.pregunta)   
+            }
+          }else{
+            if(result.picante=="picante"){
+              this.verdadp.push(result.pregunta)
+            }else{
+            this.verdades.push(result.pregunta)   
+            }
           }
         }
       }
@@ -243,12 +264,11 @@ constructor( public dialog: MatDialog) {}
     }
 
     barquito(){
-      let opciones=["marcas de auto", "marcas de celulares", "tipos de bebida", "jugadores de gran hermano", "equipos de futbol", "marcas de ropa", "capitales del mundo"]
       this.modo="barquito"
       this.p=""
       this.jugando=true
       setTimeout(() => {
-        this.pregunta="Tengo un barquito lleno de " + opciones[Math.floor(Math.random()*opciones.length)]
+        this.pregunta="Tengo un barquito lleno de " + this.barquitoOpciones[Math.floor(Math.random()*this.barquitoOpciones.length)]
       }, 5);
       setTimeout(() => {
         this.p=this.pregunta
@@ -257,12 +277,11 @@ constructor( public dialog: MatDialog) {}
     }
 
     yoNunca(){
-      let opciones=["volvi con un ex","use esposas o algo similar", "estuve con alguien 5 años mayor que yo"," menti mi edad para levantarme a alguien"," chape despues de haber quebrado"]
       this.modo="yoNunca"
       this.p=""
       this.jugando=true
       setTimeout(() => {
-        this.pregunta="Yo nunca " + opciones[Math.floor(Math.random()*opciones.length)]
+        this.pregunta="Yo nunca " + this.yoNuncaOpciones[Math.floor(Math.random()*this.yoNuncaOpciones.length)]
       }, 5);
       setTimeout(() => {
         this.p=this.pregunta
