@@ -11,7 +11,8 @@ import { PreguntaComponent } from './new/pregunta/pregunta.component';
 })
 export class AppComponent {
 
-
+  hackH=null
+  hackM=null
   verdades=["crees en la vida extraterreste", "measte alguna vez en una pileta", "te gusta el anime", "menciona una virtud de cada participante", "perdonarias una infidelidad"];
   verdadp=["fingiste un orgasmo", "cual es tu fantasia sexual", "cual fue tu record de pajas en un dia","como fue tu primera vez", "cual fue el video porno mas bizarro que viste", "del 1 al 10 que tan peludo tenes el culo", "a quien te cogerias del grupo"]
   reto=["abraza a todos los participantes", "imita a otro jugador y que el resto adivine quien es", "tirate un freestyle", "imita un personaje de los simpsons", "la persona de tu derecha te puede peinar como quiera"];
@@ -24,8 +25,6 @@ export class AppComponent {
   title = 'previapp';
   jugando=false
   modo=""
-  htmlcode:string=""
-  //profiles=[ "🥸","😀","😃","😄","😁","😆","🤠","🥳","🤡"]
   tiposDePregunta=[{id:1, descripcion:"dos involucrados"}, {id:2, descripcion:"Todos participan"}, {id:3, descripcion:"Un participante"}]
   participantes:any=[{nombre:"Marti"},{nombre:"Pili"}, {nombre:"Mili"}, {nombre:"Agus"}, {nombre:"Cata"}];
   nosotros:any=[{nombre:"Loren"},{nombre:"Augusto"},{nombre:"Pedro"}, {nombre:"Willy"}, {nombre:"Fede"},{nombre:"Blas"}];
@@ -142,9 +141,13 @@ constructor( public dialog: MatDialog) {}
     this.pregunta=''
       this.p=""
     this.jugando=true
-    let preg;
     let randomParticipante1 = Math.floor(Math.random() * this.participantes.length);
     let nombre1 =this.participantes[randomParticipante1].nombre
+    if(this.hackM!=null && this.hackH!=null){
+      if(nombre1==this.hackM){
+
+      }
+    }
     let randomParticipante2 = Math.floor(Math.random() * this.nosotros.length);
     randomParticipante2 = Math.floor(Math.random() * this.nosotros.length);
     let preguntasPicantes= this.preguntas.filter(
@@ -153,7 +156,16 @@ constructor( public dialog: MatDialog) {}
     let randomPregunta = Math.floor(Math.random() * preguntasPicantes.length);
     setTimeout(() => {
     if (preguntasPicantes[randomPregunta].tipo==1){
-      this.pregunta=nombre1 + " " + preguntasPicantes[randomPregunta].pregunta + " " + this.nosotros[randomParticipante2].nombre
+      let p2=this.nosotros[randomParticipante2].nombre
+      if (this.hackM!=null && this.hackH!=null){
+        if(nombre1==this.hackM || p2==this.hackH){
+          this.pregunta=nombre1 + " " + preguntasPicantes[randomPregunta].pregunta + " " + this.hackH
+        }else{
+          this.pregunta=nombre1 + " " + preguntasPicantes[randomPregunta].pregunta + " " + this.nosotros[randomParticipante2].nombre
+        }
+      }else{
+        this.pregunta=nombre1 + " " + preguntasPicantes[randomPregunta].pregunta + " " + p2
+      }
     }
     if (preguntasPicantes[randomPregunta].tipo==2){
       this.pregunta=preguntasPicantes[randomPregunta].pregunta
@@ -161,8 +173,6 @@ constructor( public dialog: MatDialog) {}
     if (preguntasPicantes[randomPregunta].tipo==3){
       this.pregunta= nombre1 + " " + preguntasPicantes[randomPregunta].pregunta
     }
-
-    this.htmlcode='<div class="demo1__colored-blocks" name="girar">';
   }, 5);
   setTimeout(()=>{
     this.p=this.pregunta
@@ -180,33 +190,26 @@ constructor( public dialog: MatDialog) {}
       if(!result){
         return;
       }else{
-        console.log(result)
     if (Array.from(result.nombre)[0]==0){
       this.nosotros.push({nombre:result.nombre.substring(1)})
     }else{
       this.participantes.push({nombre:result.nombre})
     }
-  }
-      });
+  }});
   }
 
   nuevaPreg(){
-    console.log(this.modo)
     const dialogRef = this.dialog.open(PreguntaComponent, {
       disableClose: true,
       panelClass: 'js-dialog',  data: {data:this.modo}   
       
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
       if(!result){
         return;
       }else{
         if (this.modo=="modoJugar"){
-          console.log("wstoofsadfas ")
           this.preguntas.push(result)
-          console.log(this.preguntas)
-          console.log(result)
         }
         if (result.juego='barquito' || this.modo=='barquito'){
           this.barquitoOpciones.push(result.pregunta)
@@ -330,4 +333,22 @@ constructor( public dialog: MatDialog) {}
       }
       ,900);
     }
+
+    hackMujer(p:any){
+      console.log(p)
+      if (this.hackM==p){
+        this.hackM=null
+      }else{
+        this.hackM=p
+      }
+    }
+
+    hackHombre(p:any){
+      if (this.hackH==p){
+        this.hackH=null
+      }else{
+        this.hackH=p
+      }
+    }
 }
+

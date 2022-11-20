@@ -40,7 +40,6 @@ export class PreguntaComponent implements OnInit {
     let p=this.nuevaPregunta.value
     if(p.fire=="true"){p.fire=true}
     else{p.fire=false}
-    console.log(p)
     this.dialogRef.close(p);
   }
 
@@ -50,14 +49,12 @@ export class PreguntaComponent implements OnInit {
   }
 
   addPreguntaVR(){
-   // console.log(this.nuevaPreguntaVR.value)
     this.dialogRef.close(this.nuevaPreguntaVR.value);
   }
   cancelar(){
     this.dialogRef.close();
   }
   addPreguntaHome(){
-    let p=this.nuevaPreguntaHome.value
-    this.dialogRef.close(p);
+    this.dialogRef.close(this.nuevaPreguntaHome.value);
   }
 }

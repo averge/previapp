@@ -57,12 +57,12 @@ JUGADORES</h1>
 border-spacing: 1px 20px;
 display:table;">
   <td style="padding: 10px">
-    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of nosotros; let i = index" align="center" ><a (click)="nosotros.splice(i,1);">🚮</a> {{persona.nombre}} 🙋‍♂️
+    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of nosotros; let i = index" align="center" ><a (click)="nosotros.splice(i,1);">🚮</a> {{persona.nombre}} <a (click)="hackHombre(persona.nombre)" *ngIf="persona.nombre!=hackH">🙋‍♂️</a><a (click)="hackHombre(persona.nombre)" *ngIf="persona.nombre==hackH">🙆‍♂️</a>
     </tr>
 
   </td>
   <td  style="padding: 30px;">
-    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of participantes;  let i = index" align="center">🙋‍♀️ {{persona.nombre}} <a (click)="participantes.splice(i,1);">🚮</a>
+    <tr style="font-size: 20px; font-family:monospace;" *ngFor="let persona of participantes;  let i = index" align="center"> <a *ngIf="persona.nombre!=hackM" (click)="hackMujer(persona.nombre)">🙋‍♀️</a> <a *ngIf="persona.nombre==hackM" (click)="hackMujer(persona.nombre)">🙆‍♀️</a> {{persona.nombre}} <a (click)="participantes.splice(i,1);">🚮</a>
     </tr>
   </td>
 
